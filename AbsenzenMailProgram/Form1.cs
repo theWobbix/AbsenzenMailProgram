@@ -56,8 +56,8 @@ namespace AbsenzenMailProgram
             InitializeComponent();  //??
             Data.Init();            //Initilalize the Infos about all teachers
             CreateCbox_Faecher();   //Create the first cBox
-            Getcredential();        //Sets up a Gmail-Connection
-            MailCompiler.CreateMail();
+            //Getcredential();        //Sets up a Gmail-Connection
+            //MailCompiler.CreateMail();
             Print(Properties.Settings.Default.FirstTimeUse.ToString());
                          
             if(Properties.Settings.Default.FirstTimeUse == true)
@@ -324,35 +324,35 @@ namespace AbsenzenMailProgram
 
 
         //RANDOM SHIT FROM https://developers.google.com/gmail/api/quickstart/dotnet
-        public void Getcredential()
-        {
-            UserCredential credential;
-            string[] scopes = { GmailService.Scope.GmailSend };
-            const string ApplicationName = "AbsenzenMailProgramm v1";
+        //public void Getcredential()
+        //{
+        //    UserCredential credential;
+        //    string[] scopes = { GmailService.Scope.GmailSend };
+        //    const string ApplicationName = "AbsenzenMailProgramm v1";
 
-            using (var stream =
-                new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
-            {
-                string credPath = Environment.GetFolderPath(
-                    Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/gmail-dotnet-quickstart.json");
+        //    using (var stream =
+        //        new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+        //    {
+        //        string credPath = Environment.GetFolderPath(
+        //            Environment.SpecialFolder.Personal);
+        //        credPath = Path.Combine(credPath, ".credentials/gmail-dotnet-quickstart.json");
 
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
+        //        credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+        //            GoogleClientSecrets.Load(stream).Secrets,
+        //            scopes,
+        //            "user",
+        //            CancellationToken.None,
+        //            new FileDataStore(credPath, true)).Result;
+        //        Console.WriteLine("Credential file saved to: " + credPath);
+        //    }
 
-            // Create Gmail API service.
-            var service = new GmailService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-        }//End of GetCredential()
+        //    // Create Gmail API service.
+        //    var service = new GmailService(new BaseClientService.Initializer()
+        //    {
+        //        HttpClientInitializer = credential,
+        //        ApplicationName = ApplicationName,
+        //    });
+        //}//End of GetCredential()
 
 
     }//End of Form1
